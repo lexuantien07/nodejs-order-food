@@ -206,8 +206,8 @@ let postOrder = async (req, res) => {
                         "payment_method": "paypal"
                     },
                     "redirect_urls": {
-                        "return_url": "http://localhost:3030/customer/order",
-                        "cancel_url": "http://localhost:3030/cancel/*"
+                        "return_url": "https://nodejs-order-food.onrender.com/customer/order",
+                        "cancel_url": "https://nodejs-order-food.onrender.com/cancel/*"
                     },
                     "transactions": [{
                         "item_list": {
