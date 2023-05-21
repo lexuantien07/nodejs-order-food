@@ -1,0 +1,47 @@
+<section class="">
+    <h1>HOME PAGE</h1>
+    <div class="">
+        <% for (let i = 0; i < data.length / 4; i++) {%>
+            <div class="container py-5">
+                <div class="row">
+                    <% for (let j = 0; j < 4; j++) {%>
+                        <% if (data[4*i+j]) {%>
+                        <div class="col-md-12 col-lg-3 mb-4 mb-lg-0">
+                            <div class="card">
+                                <div class="d-flex justify-content-between p-3">
+                                    <p class="lead mb-0">Today's Combo Offer</p>
+                                    <div
+                                    class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
+                                    style="width: 35px; height: 35px;">
+                                    <p class="text-white mb-0 small">x4</p>
+                                    </div>
+                                </div>
+                                <img src="/img/foods/<%= data[4*i+j].img %>"
+                                    class="card-img-top" alt="Laptop"/>
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                    <p class="small"><a href="#!" class="text-muted">Laptops</a></p>
+                                    <p class="small text-danger"><s>$<%= data[4*i+j].price + data[4*i+j].price * 20 /100 %></s></p>
+                                    </div>
+                        
+                                    <div class="d-flex justify-content-between mb-3">
+                                    <h5 class="mb-0"><%= data[4*i+j].name %></h5>
+                                    <h5 class="text-dark mb-0">$<%= data[4*i+j].price %></h5>
+                                    </div>
+                        
+                                    <div class="d-flex flex-row">
+                                        <button data-item="<%= JSON.stringify(data[3*i+j]) %>" class="add-to-cart btn btn-primary flex-fill me-1" data-mdb-ripple-color="dark">
+                                            Thêm vào giỏ hàng
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <%} %>
+                    <%} %>
+                </div>
+            </div>
+        <%} %>
+    </div>
+</section>
+

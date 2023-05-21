@@ -1,0 +1,85 @@
+<!-- <section>
+    <form action="/register" method="POST">
+        <% if(messages.error) {%> 
+            <div><%= messages.error %></div>
+            <%} %>
+        <div class="">
+            <label for="name">Tên</label>
+            <input type="text" id="name" name="name" value="<%= messages.name %>">
+        </div>
+        <div class="">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" value="<%= messages.email %>">
+        </div>
+        <div class="">
+            <label for="password">Mật khẩu</label>
+            <input type="text" id="password" name="password">
+        </div>
+        <div class="">
+            <button>Đăng ký</button>
+            <span><a href="/login">Đã có tài khoản?</a></span>
+        </div>
+    </form>
+</section> -->
+<section class="">
+    <!-- Jumbotron -->
+    <div class="px-4 py-5 px-md-5 text-center text-lg-start vh-100" style="background-color: hsl(0, 0%, 96%)">
+        <div class="container">
+            <div class="row gx-lg-5 align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h1 class="my-5 display-3 fw-bold ls-tight">
+                    The best offer <br />
+                    <span class="text-primary">for your business</span>
+                    </h1>
+                    <p style="color: hsl(217, 10%, 50.8%)">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Eveniet, itaque accusantium odio, soluta, corrupti aliquam
+                    quibusdam tempora at cupiditate quis eum maiores libero
+                    veritatis? Dicta facilis sint aliquid ipsum atque?
+                    </p>
+                </div>
+    
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="card">
+                        <div class="card-body py-5 px-md-5">
+                            <form action="/register" method="POST">
+                                <% if(messages.error) {%>
+                                    <!-- <div class="form-outline mb-4"> -->
+                                        <p><%= messages.error %></p>
+                                    <!-- </div> -->
+                                <%} %>
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="form3Example1" class="form-control" name="name" value="<%= messages.name %>"/>
+                                    <label class="form-label" for="form3Example1">Tên người dùng</label>
+                                </div>
+                                <!-- Email input -->
+                                <div class="form-outline mb-4">
+                                    <input type="email" id="form3Example3" class="form-control" name="email" value="<%= messages.email %>"/>
+                                    <label class="form-label" for="form3Example3">Email</label>
+                                </div>
+                
+                                <!-- Password input -->
+                                <div class="form-outline mb-4">
+                                    <input type="password" id="form3Example4" class="form-control" name="password"/>
+                                    <label class="form-label" for="form3Example4">Mật khẩu</label>
+                                </div>
+
+                
+                                <!-- Submit button -->
+                                <button class="btn btn-primary btn-block mb-4">
+                                    Đăng ký
+                                </button>                
+                                <!-- Checkbox -->
+                                <div class="form-check d-flex justify-content-center mb-4">
+                                    <p>Đã có tài khoản? <a href="/login" class="">Đăng nhập ngay</a></p>
+                                </div>
+            
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Jumbotron -->
+</section>

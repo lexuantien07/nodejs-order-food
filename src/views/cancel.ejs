@@ -1,0 +1,44 @@
+<!-- <head>
+    <title>HTML Meta Tag</title>
+    <meta http-equiv = "refresh" content = "2; url = http://localhost:3030" />
+ </head>
+ <body>
+    <h2>You have canceled an order! Redirecting to Home page</h2>
+ </body> -->
+
+<!-- <section>
+   <h2>You have canceled an order!</h2>
+   <form action="/cancel" method="POST">
+      <input type="hidden" value="cancel" name="cancel">
+      <button type="submit">Xác nhận</button>
+   </form>
+</section> -->
+<section class="h-100 h-custom" style="background-color: #eee;">
+   <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+         <div class="empty-cart" style=" width: 60vw;
+                                   margin: 0 auto;
+                                   text-align: center;
+                                   font-weight: 300">
+
+            <div class="card">
+               <div class="card-body">
+                  <div class="row d-flex justify-content-center align-items-center h-100">
+                     <img src="/img/cancel.webp" alt="" class="img-fluid rounded-3">
+                  </div>
+                  
+                  <h2 class="py-1">Bạn vừa huỷ đơn hàng!</h2>
+                  <!-- <h5>Quay lại trang chủ</h5> -->
+               </div>
+               <form action="/cancel" method="POST">
+                  <input type="hidden" value="cancel" name="cancel">
+                  <button type="submit" class="btn btn-info btn-block btn-lg">Xác nhận</button>
+               </form>
+                  <!-- <a href="/">
+                     <button type="button" class="btn btn-info btn-block btn-lg">Quay lại trang chủ</button>
+                  </a> -->
+            </div>
+         </div>
+      </div>
+   </div>
+</section>

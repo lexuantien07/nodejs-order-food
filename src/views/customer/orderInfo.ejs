@@ -1,0 +1,223 @@
+<style>
+    /* .status-box ul li.step-completed span:after {
+        background: gray;
+    }
+
+    .status-box ul li.step-completed span {
+        color: gray;
+    }
+
+    .status-box ul li.current span {
+        color: rgb(240, 93, 57);
+    }
+
+    .status-box ul li.current span:after {
+        background: rgb(240, 93, 57);
+    }
+
+    .status-box ul li small {
+        float: right;
+        font-size: 14px;
+        margin-top: 8px;
+    } */
+:root {
+    --primary: #50abc8;
+    --primary-hover: #3b7f94;
+    --secondary: #F8F8F8;
+    --pure: #fff;
+    --dark: #232323;
+    --gray: #ccc;
+}
+section.status {
+    background: var(--secondary);
+    min-height: calc(100vh - 86px);
+}
+.status-box {
+    padding: 60px 0 0;
+}
+.status-box ul {
+    margin-left: 84px;
+}
+.status-box ul li span {
+    position: relative;
+    padding-left: 20px;
+}
+
+.status-box ul li span:after {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top:50%;
+    background: var(--dark);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    box-shadow:0 0 1px 10px var(--secondary);
+}
+
+.status-box ul li span:before{
+    font-family: "Line Awesome Free";
+    font-size: 46px;
+    font-weight: 600;
+    position: absolute;
+    left: -90px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: inherit;
+}
+.status-box ul li:nth-child(1) span:before {
+    content: '\f46c';
+}
+
+.status-box ul li:nth-child(2) span:before {
+    content: '\f560';
+}
+
+.status-box ul li:nth-child(3) span:before {
+    content: '\f818';
+}
+
+.status-box ul li:nth-child(4) span:before {
+    content: '\f0d1';
+}
+
+.status-box ul li:nth-child(5) span:before {
+    content: '\f582';
+}
+.status-box ul li {
+    position: relative;
+}
+
+.status-box ul li:before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: -6px;
+   width: 2px;
+   height: 100%;
+   background: var(--dark);
+   margin-top: 10px;
+}
+
+.status-box ul li:nth-child(5) span:after {
+    box-shadow:0 20px 1px 20px var(--secondary);
+}
+
+
+.status-box ul li.step-completed:before {
+    background: var(--gray);
+}
+
+
+.status-box ul li.step-completed span:after {
+    background: var(--gray);
+}
+
+.status-box ul li.step-completed span {
+    color: var(--gray);
+}
+
+.status-box ul li.current span {
+    color: var(--primary);
+}
+
+.status-box ul li.current span:after {
+    background: var(--primary);
+}
+
+.status-box ul li small {
+    float: right;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+</style>
+
+<!-- <section> -->
+    <!-- <h2>Đơn hàng</h2>
+    <div class="a"><%= order._id %></div> -->
+    <% for (let i = 0; i < Object.values(order.items).length; i++) { %>
+        <!-- <div class=""><img src="/img/foods/<%= Object.values(order.items)[i].item.img %>" alt="img" width="100px"></div>
+        <div class=""><%= Object.values(order.items)[i].item.name %></div>
+        <div class="">Giá: <%= Object.values(order.items)[i].item.price %>
+            <span>Số lượng<%= Object.values(order.items)[i].quantity %></span>
+        </div> -->
+        <!-- <div class="container py-5 h-100"> -->
+            <!-- <div class="row d-flex justify-content-center align-items-center h-100"> -->
+                <!-- <div class="col"> -->
+                    <!-- <div class="card d-flex justify-content-center align-items-center"> -->
+                        <!-- <div class="card-body p-4"> -->
+                            <div class="row d-flex justify-content-center align-items-center mt-2">
+                                <div class="col-lg-8">
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex flex-row align-items-center">
+                                                    <div>
+                                                        <img
+                                                        src="/img/foods/<%= Object.values(order.items)[i].item.img %>"
+                                                        class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                    </div>
+                                                    <div class="ms-3">
+                                                        <h5><%= Object.values(order.items)[i].item.name %></h5>
+                                                        <p class="small mb-0"><%= Object.values(order.items)[i].item.price %>$</p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-center">
+                                                    <div style="width: 50px;">
+                                                        <h5 class="fw-normal mb-0">x<%= Object.values(order.items)[i].quantity %></h5>
+                                                    </div>
+                                                    <div style="width: 80px;">
+                                                        <h5 class="mb-0">$<%= Object.values(order.items)[i].item.price 
+                                                            * Object.values(order.items)[i].quantity %></h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% } %>
+    
+    <!-- <input id="hiddenInput" type="hidden" value="<%= JSON.stringify(order) %>">
+    <div class="status-box">
+        <ul>
+            <li class="status" data-status="order_placed"><span>Đặt hàng thành công</span></li>
+            <li class="status" data-status="confirmed"><span>Xác nhận đơn hàng</span></li>
+            <li class="status" data-status="prepared"><span>Chuẩn bị đơn hàng</span></li>
+            <li class="status" data-status="delivered"><span>Đang vận chuyển</span></li>
+            <li class="status" data-status="completed"><span>Hoàn thành</span></li>
+        </ul>
+    </div> -->
+<!-- </section> -->
+<section class="status">
+    <div class="container mx-auto">
+        <div class="status-box w-full lg:w-2/3 mx-auto">
+            <div class="flex items-center justify-between mb-4">
+                <h1 class="text-xl font-bold">Trạng thái đơn hàng</h1>
+                <h6 class="bg-white py-1 rounded-full px-4 text-blue-600 text-xs"><%=
+                    order._id %></h6>
+                <input id="hiddenInput" type="hidden" value="<%= JSON.stringify(order) %>">
+            </div>
+            <ul>
+                <li class="status_line text-sm md:text-xl pb-16" data-status="order_placed"><span>Order Placed</span>
+                </li>
+                <li class="status_line text-sm md:text-xl pb-16" data-status="confirmed"><span>Order confirmation</span>
+                </li>
+                <li class="status_line text-sm md:text-xl pb-16" data-status="prepared"><span>Preparation</span></li>
+                <li class="status_line text-sm md:text-xl pb-16" data-status="delivered"><span>Out for delivery </span>
+                </li>
+                <li class="status_line text-sm md:text-xl" data-status="completed"><span>Complete</span></li>
+            </ul>
+        </div>
+    </div>
+</section>
+<script>
+    
+</script>
