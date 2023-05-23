@@ -28014,6 +28014,7 @@ if (payType) {
     }
   });
 }
+updateStatus(order);
 
 //socket.io
 

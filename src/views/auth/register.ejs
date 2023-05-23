@@ -44,9 +44,9 @@
                         <div class="card-body py-5 px-md-5">
                             <form action="/register" method="POST">
                                 <% if(messages.error) {%>
-                                    <!-- <div class="form-outline mb-4"> -->
-                                        <p><%= messages.error %></p>
-                                    <!-- </div> -->
+                                    <div class="note note-warning mb-3">
+                                        <strong>Note warning:</strong> <%= messages.error %>
+                                    </div>
                                 <%} %>
                                 <div class="form-outline mb-4">
                                     <input type="text" id="form3Example1" class="form-control" name="name" value="<%= messages.name %>"/>

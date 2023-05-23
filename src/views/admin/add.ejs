@@ -1,0 +1,190 @@
+<style>
+    :root {
+	--blue: #0071FF;
+	--light-blue: #B6DBF6;
+	--dark-blue: #005DD1;
+	--grey: #f2f2f2;
+}
+
+
+.img-container {
+	max-width: 400px;
+	width: 100%;
+	background: #fff;
+	padding: 10px 30px 10px 30px;
+	border-radius: 30px;
+}
+.img-area {
+	position: relative;
+	width: 100%;
+	height: 240px;
+	background: var(--grey);
+	margin-bottom: 30px;
+	border-radius: 15px;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.img-area .icon {
+	font-size: 100px;
+}
+.img-area h3 {
+	font-size: 20px;
+	font-weight: 500;
+	margin-bottom: 6px;
+}
+.img-area p {
+	color: #999;
+}
+.img-area p span {
+	font-weight: 600;
+}
+.img-area img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	z-index: 100;
+}
+.img-area::before {
+	content: attr(data-img);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .5);
+	color: #fff;
+	font-weight: 500;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	pointer-events: none;
+	opacity: 0;
+	transition: all .3s ease;
+	z-index: 200;
+}
+.img-area.active:hover::before {
+	opacity: 1;
+}
+.select-image {
+	display: block;
+	width: 100%;
+	padding: 16px 0;
+	border-radius: 15px;
+	background: var(--blue);
+	color: #fff;
+	font-weight: 500;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	transition: all .3s ease;
+}
+.select-image:hover {
+	background: var(--dark-blue);
+}
+</style>
+
+<section class="">
+    <h1>ADD ITEM</h1>
+    <div class="">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-12 col-lg-3 mb-4 mb-lg-0">
+                    <% if (messages.error) {%>
+                        <div class="note note-warning mb-3">
+                            <strong>Note warning:</strong> <%= messages.error %>
+                        </div>
+                    <%} %>
+                    <div class="card">
+                        <div class="d-flex justify-content-between p-3">
+                            <p class="lead mb-0">Today's Combo Offer</p>
+                            <div
+                            class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
+                            style="width: 35px; height: 35px;">
+                            <p class="text-white mb-0 small">x4</p>
+                            </div>
+                        </div>
+                        <form action="/admin/post-add" method="POST">
+                            <div class="img-container">
+                                <input type="file" id="file" accept="image/*" hidden>
+                                <div class="img-area" data-img="">
+                                    <i class='bx bxs-cloud-upload icon'></i>
+                                    <h3>Upload Image</h3>
+                                    <input type="hidden" value="" id="img-value" name="imgAdd">
+                                </div>
+                                <button type="button" class="select-image">Tải lên hình ảnh</button>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                <p class="small"><a href="#!" class="text-muted">Foods</a></p>
+                                </div>
+                    
+                                
+                                <div class="row mb-4">
+                                    <div class="col">
+                                    <div class="form-outline">
+                                        <input type="text" id="form3Example1" class="form-control" name="nameAdd" value="<%= messages.name %>"/>
+                                        <label class="form-label" for="form3Example1">Tên món</label>
+                                    </div>
+                                    </div>
+                                    <div class="col">
+                                    <div class="form-outline">
+                                        <input type="text" id="form3Example2" class="form-control" name="priceAdd" value="<%= messages.price %>"/>
+                                        <label class="form-label" for="form3Example2">Giá</label>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row">
+                                    <button role="submit" class="btn btn-primary flex-fill me-1" data-mdb-ripple-color="dark">
+                                        Lưu
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // console.log('aaaa')
+    const selectImage = document.querySelector('.select-image');
+    const inputFile = document.querySelector('#file');
+    const imgArea = document.querySelector('.img-area');
+    const value = document.querySelector('#img-value');
+
+    selectImage.addEventListener('click', function () {
+        inputFile.click();
+    })
+
+    inputFile.addEventListener('change', function () {
+        const image = this.files[0]
+        if(image.size < 5000000) {
+            const reader = new FileReader();
+            reader.onload = ()=> {
+                const allImg = imgArea.querySelectorAll('img');
+                allImg.forEach(item=> item.remove());
+                const imgUrl = reader.result;
+                const img = document.createElement('img');
+                img.src = imgUrl;
+                imgArea.appendChild(img);
+                imgArea.classList.add('active');
+                imgArea.dataset.img = image.name;
+                value.value = image.name;
+            }
+            reader.readAsDataURL(image);
+        } else {
+            alert("Image size more than 5MB");
+        }
+    })
+</script>

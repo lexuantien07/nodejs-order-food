@@ -2,10 +2,14 @@
   <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <% if(messages.success) {%>
-            <div class=""><%= messages.success %></div>
+          <div class="note note-success mb-3">
+            <strong>Note success:</strong><%= messages.success %>
+          </div>
         <%} %>
         <% if(messages.cancel) {%>
-            <div class=""><%= messages.cancel %></div>
+          <div class="note note-info mb-3">
+            <strong>Note info:</strong><%= messages.cancel %>
+          </div>
         <%} %>
         
         <table class="table align-middle mb-0 bg-white">

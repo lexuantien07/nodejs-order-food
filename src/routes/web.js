@@ -22,6 +22,10 @@ const webRoutes = (app) => {
 
     router.get('/cancel/*', homeController.getCancelPage);
     router.post('/cancel', homeController.postCancel);
+
+    router.get('/food', homeController.getFoodPage);
+    router.get('/drink', homeController.getDrinkPage);
+    router.get('/dessert', homeController.getDessertPage);
     return app.use('/', router);
 };
 module.exports = webRoutes;

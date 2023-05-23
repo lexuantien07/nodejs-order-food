@@ -71,6 +71,9 @@ if(payType) {
     })
 }
 
+
+updateStatus(order);
+
 //socket.io
 
 let socket = io();

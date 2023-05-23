@@ -18,7 +18,6 @@ const _getDirectedURL = (req) => {
 let getHomePage = async (req, res) => {
     const favorites = await Menu.find();
     console.error();
-    // console.log("Menu: ", favorites);
     res.render('home', { data: favorites });
 };
 
@@ -142,15 +141,11 @@ let updateCart = (req, res) => {
         }
         cart.totalQuantity += 1;
         cart.totalPrice += parseInt(req.body.price);
-        console.log('check typeof totalprice empty: ', typeof(cart.totalPrice));
     } else {
         cart.items[req.body._id].quantity += 1;
         cart.totalQuantity += 1;
         cart.totalPrice += parseInt(req.body.price);
-        console.log('check typeof body.price: ', typeof(req.body.price));
-        console.log('check typeof totalprice have: ', typeof(cart.totalPrice));
     }
-    console.log('check typeof totalprice: ', typeof(cart.totalPrice));
     return res.json({ totalQuantity: req.session.cart.totalQuantity });
 };
 
@@ -161,8 +156,6 @@ let postOrder = async (req, res) => {
         req.flash('error', 'Vui lòng nhập đủ thông tin');
         return res.redirect('/cart');
     }
-
-
 
     const user = await User.findById(req.user._id).exec();
 
@@ -297,11 +290,27 @@ let postCancel = async (req, res) => {
     }
     return res.redirect('/customer/order');
 };
+
+let getFoodPage = async (req, res) => {
+    const foods = await Menu.find({ category: 'food' });
+    return res.render('food.ejs', { data: foods });
+};
+
+let getDrinkPage = async (req, res) => {
+    const drinks = await Menu.find({ category: 'drink' });
+    return res.render('drink.ejs', { data: drinks });
+};
+
+let getDessertPage = async (req, res) => {
+    const desserts = await Menu.find({ category: 'dessert' });
+    return res.render('dessert.ejs', { data: desserts });
+};
 module.exports = {
-    getHomePage, 
+    getHomePage,
     getRegisterPage, getLoginPage, 
     getCartPage, getCheckCartPage, updateCart,
     postRegister, postLogin, postLogout, 
     postOrder, 
-    getCancelPage, postCancel
+    getCancelPage, postCancel,
+    getFoodPage, getDrinkPage, getDessertPage,
 }

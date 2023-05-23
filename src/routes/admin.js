@@ -6,6 +6,11 @@ const admin = require('../middlewares/admin');
 
 const adminRoutes = (app) => {
     router.get('/order', admin, adminController.orderController);
+    router.get('/add', admin, adminController.getAddItemPage);
+    router.post('/post-add', admin, adminController.postAddItem);
+    router.post('/edit', admin, adminController.menuController);
+    router.post('/post-edit', admin, adminController.postEditItem);
+    router.post('/delete', admin, adminController.postDeleteItem);
     router.post('/order/status', admin, adminController.statusController);
     return app.use('/admin', router);
 };
