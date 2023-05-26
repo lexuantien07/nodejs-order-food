@@ -92,7 +92,6 @@
 </style>
 
 <section class="">
-    <h1>EDIT ITEM</h1>
     <div class="">
         <div class="container py-5">
             <div class="row">
@@ -139,13 +138,13 @@
                                     </div>
                                     </div>
                                 </div>
-                                <select name="isAvailable"
-                                class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                                    <option value="true">
-                                        Available</option>
-                                    <option value="false">
-                                        Not available</option>
-                                </select>
+                                <div class="card mb-3">
+                                    <select name="categoryEdit" class="form-select" aria-label="Default select example">
+                                        <option value="food" name="sl1">Món chính</option>
+                                        <option value="drink" name="sl2">Đồ uống</option>
+                                        <option value="dessert" name="sl3">Tráng miệng</option>
+                                    </select>
+                                </div>
                                 <div class="d-flex flex-row">
                                     <input type="hidden" value="<%= JSON.stringify(itemEdit) %>" id="itemOld" name="itemOld">
                                     <button role="submit" class="btn btn-primary flex-fill me-1" data-mdb-ripple-color="dark">

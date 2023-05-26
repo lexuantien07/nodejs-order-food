@@ -45,13 +45,11 @@ let postEditItem = async (req, res) => {
     console.log('data old: ', JSON.parse(req.body.itemOld));
     const newItem = req.body;
     const oldItem = JSON.parse(req.body.itemOld);
-    const check = (newItem.isAvailable === 'true');
-    console.log('check ', check)
     // console.log('number ', parseInt(newItem.priceEdit));
     const updatedItem = await Menu.findOneAndUpdate({ _id: oldItem._id}, { $set: { name: newItem.nameEdit, 
                                                                             price: parseInt(newItem.priceEdit), 
                                                                             img: newItem.imgValue,
-                                                                            isAvailable: check } });
+                                                                            category: newItem.categoryEdit } });
     // console.log('data : ', updatedItem);
     // const item = await Menu.findOne({ _id: updatedItem._id });
     // console.log('data after: ', item);
@@ -64,11 +62,12 @@ let getAddItemPage = (req, res) => {
 
 let postAddItem = async (req, res) => {
     console.log('data add: ', req.body);
-    const { imgAdd, nameAdd, priceAdd } = req.body;
-    if (!imgAdd || !nameAdd || !priceAdd) {
+    const { imgAdd, nameAdd, priceAdd, categoryAdd } = req.body;
+    if (!imgAdd || !nameAdd || !priceAdd || !categoryAdd) {
         req.flash('error', 'Vui lòng nhập đủ thông tin');
         req.flash('name', nameAdd);
         req.flash('price', priceAdd);
+        req.flash('category', categoryAdd);
         return res.redirect('/admin/add');
     }
     const itemExisted = await Menu.exists({ name: nameAdd });
@@ -80,7 +79,8 @@ let postAddItem = async (req, res) => {
         {
             name: nameAdd,
             price: parseInt(priceAdd),
-            img: imgAdd
+            img: imgAdd,
+            category: categoryAdd
         }
     );
     item.save().then((item) => {
